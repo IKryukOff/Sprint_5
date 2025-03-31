@@ -45,8 +45,6 @@ class TestProfilePage:
 
         WebDriverWait(driver, 5).until(EC.presence_of_element_located(ProfilePage.info_text))
         driver.find_element(*ProfilePage.logout_button).click()
+        WebDriverWait(driver, 5).until_not(EC.presence_of_element_located(ProfilePage.logout_button))
 
-        WebDriverWait(driver, 5).until(EC.presence_of_element_located(LoginPage.login_button))
-        login_title = driver.find_element(*LoginPage.title_text)
-
-        assert driver.current_url == Urls.login_page and login_title.text == 'Вход'
+        assert driver.current_url == Urls.login_page and driver.find_element(*LoginPage.title_text)

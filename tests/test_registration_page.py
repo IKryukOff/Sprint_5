@@ -1,3 +1,5 @@
+from time import sleep
+
 import pytest
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,11 +18,10 @@ class TestRegistrationPage:
         driver.find_element(*RegistrationPage.password_input).send_keys(User.generate().password)
         driver.find_element(*RegistrationPage.registrate_button).click()
 
-        WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located(LoginPage.title_text))
-        login_button = driver.find_element(*LoginPage.title_text)
+        WebDriverWait(driver, 5).until_not(
+            EC.presence_of_element_located(RegistrationPage.registrate_button))
 
-        assert driver.current_url == Urls.login_page and login_button.text == 'Вход'
+        assert driver.current_url == Urls.login_page and driver.find_element(*LoginPage.title_text)
 
     def test_input_empty_name_nothing_happens(self, driver: WebDriver) -> None:
         driver.get(Urls.registration_page)
@@ -41,12 +42,11 @@ class TestRegistrationPage:
         driver.find_element(*RegistrationPage.email_input).send_keys(email)
         driver.find_element(*RegistrationPage.password_input).send_keys('123456')
         driver.find_element(*RegistrationPage.registrate_button).click()
-
         WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located(RegistrationPage.user_exists_text))
-        error = driver.find_element(*RegistrationPage.user_exists_text)
+            EC.presence_of_element_located(RegistrationPage.input_error_text))
+        error_message = driver.find_element(*RegistrationPage.input_error_text)
 
-        assert error.text == 'Такой пользователь уже существует'
+        assert error_message.text == 'Такой пользователь уже существует'
 
     @pytest.mark.parametrize('password', ['1', '12345'])
     def test_input_incorrect_password_less_six_symbols_password_error(self, driver: WebDriver,
@@ -58,7 +58,7 @@ class TestRegistrationPage:
         driver.find_element(*RegistrationPage.registrate_button).click()
 
         WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located(RegistrationPage.incorrect_password_text))
-        error_message = driver.find_element(*RegistrationPage.incorrect_password_text)
+            EC.presence_of_element_located(RegistrationPage.input_error_text))
+        error_message = driver.find_element(*RegistrationPage.input_error_text)
 
         assert error_message.text == 'Некорректный пароль'

@@ -19,10 +19,6 @@ class RegistrationPage:
     registrate_button = (By.XPATH, './/button[text()="Зарегистрироваться"]')
     login_text_with_href = (By.CLASS_NAME, 'Auth_link__1fOlj')
     input_error_text = (By.XPATH, './/p[contains(@class, "input__error")]')
-    incorrect_password_text = (
-        By.XPATH, './/p[contains(@class, "input__error") and text()="Некорректный пароль"]')
-    user_exists_text = (
-        By.XPATH, './/p[contains(@class, "input__error") and contains(text(), "уже")]')
 
 
 class LoginPage:

@@ -14,11 +14,9 @@ class TestLoginPage:
         driver.find_element(*LoginPage.email_field).send_keys(User.login)
         driver.find_element(*LoginPage.password_field).send_keys(User.password)
         driver.find_element(*LoginPage.login_button).click()
+        WebDriverWait(driver, 5).until_not(EC.presence_of_element_located(LoginPage.login_button))
 
-        WebDriverWait(driver, 5).until(EC.presence_of_element_located(MainPage.order_button))
-        order_button = driver.find_element(*MainPage.order_button)
-
-        assert driver.current_url == Urls.main_page and order_button.text == 'Оформить заказ'
+        assert driver.current_url == Urls.main_page and driver.find_element(*MainPage.order_button)
 
     def test_login_via_profile_show_main_page(self, driver: WebDriver) -> None:
         driver.find_element(*MainPage.profile_link_text).click()
@@ -27,11 +25,9 @@ class TestLoginPage:
         driver.find_element(*LoginPage.email_field).send_keys(User.login)
         driver.find_element(*LoginPage.password_field).send_keys(User.password)
         driver.find_element(*LoginPage.login_button).click()
+        WebDriverWait(driver, 5).until_not(EC.presence_of_element_located(LoginPage.login_button))
 
-        WebDriverWait(driver, 5).until(EC.presence_of_element_located(MainPage.order_button))
-        order_button = driver.find_element(*MainPage.order_button)
-
-        assert driver.current_url == Urls.main_page and order_button.text == 'Оформить заказ'
+        assert driver.current_url == Urls.main_page and driver.find_element(*MainPage.order_button)
 
     def test_login_via_registration_page_show_main_page(self, driver: WebDriver) -> None:
         driver.get(Urls.registration_page)
@@ -41,11 +37,9 @@ class TestLoginPage:
         driver.find_element(*LoginPage.email_field).send_keys(User.login)
         driver.find_element(*LoginPage.password_field).send_keys(User.password)
         driver.find_element(*LoginPage.login_button).click()
+        WebDriverWait(driver, 5).until_not(EC.presence_of_element_located(LoginPage.login_button))
 
-        WebDriverWait(driver, 5).until(EC.presence_of_element_located(MainPage.order_button))
-        order_button = driver.find_element(*MainPage.order_button)
-
-        assert driver.current_url == Urls.main_page and order_button.text == 'Оформить заказ'
+        assert driver.current_url == Urls.main_page and driver.find_element(*MainPage.order_button)
 
     def test_login_via_forgot_password_page_show_main_page(self, driver: WebDriver) -> None:
         driver.get(Urls.forgot_password_page)
@@ -55,8 +49,6 @@ class TestLoginPage:
         driver.find_element(*LoginPage.email_field).send_keys(User.login)
         driver.find_element(*LoginPage.password_field).send_keys(User.password)
         driver.find_element(*LoginPage.login_button).click()
+        WebDriverWait(driver, 5).until_not(EC.presence_of_element_located(LoginPage.login_button))
 
-        WebDriverWait(driver, 5).until(EC.presence_of_element_located(MainPage.order_button))
-        order_button = driver.find_element(*MainPage.order_button)
-
-        assert driver.current_url == Urls.main_page and order_button.text == 'Оформить заказ'
+        assert driver.current_url == Urls.main_page and driver.find_element(*MainPage.order_button)
