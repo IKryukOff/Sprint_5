@@ -1,14 +1,16 @@
 import random
 import string
 
+SERVICE_BASE_URL = 'https://stellarburgers.nomoreparties.site'
+
 
 class Urls:
-    main_page = 'https://stellarburgers.nomoreparties.site/'
-    registration_page = 'https://stellarburgers.nomoreparties.site/register'
-    login_page = 'https://stellarburgers.nomoreparties.site/login'
-    profile_page = 'https://stellarburgers.nomoreparties.site/account/profile'
-    order_history_page = 'https://stellarburgers.nomoreparties.site/account/order-history'
-    forgot_password_page = 'https://stellarburgers.nomoreparties.site/forgot-password'
+    main_page = f'{SERVICE_BASE_URL}/'
+    registration_page = f'{SERVICE_BASE_URL}/register'
+    login_page = f'{SERVICE_BASE_URL}/login'
+    profile_page = f'{SERVICE_BASE_URL}/account/profile'
+    order_history_page = f'{SERVICE_BASE_URL}/account/order-history'
+    forgot_password_page = f'{SERVICE_BASE_URL}/forgot-password'
 
 
 class User:
