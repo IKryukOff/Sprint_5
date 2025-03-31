@@ -9,9 +9,7 @@ class MainPage:
     buns_tab = (By.XPATH, './/span[text()="Булки"]/parent::*')
     sauces_tab = (By.XPATH, './/span[text()="Соусы"]/parent::*')
     fillings_tab = (By.XPATH, './/span[text()="Начинки"]/parent::*')
-    h_buns = (By.XPATH, './/h2[contains(@class, "text_type_main-medium")][position()=1]')
-    h_sauces = (By.XPATH, './/h2[contains(@class, "text_type_main-medium")][position()=2]')
-    h_fillings = (By.XPATH, './/h2[contains(@class, "text_type_main-medium")][last()]')
+    active_tab_class = 'tab_tab_type_current__2BEPc'
 
 
 class RegistrationPage:

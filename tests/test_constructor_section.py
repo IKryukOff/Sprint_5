@@ -1,3 +1,5 @@
+from time import sleep
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 from locators import MainPage
@@ -9,22 +11,25 @@ class TestConstructorSection:
         driver.find_element(*MainPage.constructor_link_text).click()
         driver.find_element(*MainPage.fillings_tab).click()
         driver.find_element(*MainPage.buns_tab).click()
-        h_buns = driver.find_element(*MainPage.h_buns)
+        sleep(1)
+        buns_tab_class = driver.find_element(*MainPage.buns_tab).get_attribute('class')
 
-        assert h_buns.text == 'Булки'
+        assert buns_tab_class is not None and MainPage.active_tab_class in buns_tab_class
 
     def test_click_sauces_scroll_to_sauces(self, login: WebDriver) -> None:
         driver = login
         driver.find_element(*MainPage.constructor_link_text).click()
         driver.find_element(*MainPage.sauces_tab).click()
-        h_sauces = driver.find_element(*MainPage.h_sauces)
+        sleep(1)
+        sauses_tab_class = driver.find_element(*MainPage.sauces_tab).get_attribute('class')
 
-        assert h_sauces.text == 'Соусы'
+        assert sauses_tab_class is not None and MainPage.active_tab_class in sauses_tab_class
 
     def test_click_fillings_scroll_to_fillings(self, login: WebDriver) -> None:
         driver = login
         driver.find_element(*MainPage.constructor_link_text).click()
         driver.find_element(*MainPage.fillings_tab).click()
-        h_fillings = driver.find_element(*MainPage.h_fillings)
+        sleep(1)
+        fillings_tab_class = driver.find_element(*MainPage.fillings_tab).get_attribute('class')
 
-        assert h_fillings.text == 'Начинки'
+        assert fillings_tab_class is not None and MainPage.active_tab_class in fillings_tab_class
